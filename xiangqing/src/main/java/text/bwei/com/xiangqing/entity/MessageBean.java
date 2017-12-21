@@ -1,9 +1,6 @@
 package text.bwei.com.xiangqing.entity;
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 09:06
- */
+
 
 public class MessageBean <T>{
 

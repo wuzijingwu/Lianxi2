@@ -14,10 +14,7 @@ import text.bwei.com.xiangqing.entity.GoodsShowBean;
 import text.bwei.com.xiangqing.entity.MessageBean;
 import text.bwei.com.xiangqing.model.Model;
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 09:20
- */
+
 
 public class NewsPresenter implements IPresenter{
 

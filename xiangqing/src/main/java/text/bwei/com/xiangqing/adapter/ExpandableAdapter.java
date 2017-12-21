@@ -20,24 +20,14 @@ import text.bwei.com.xiangqing.entity.ChildBean;
 import text.bwei.com.xiangqing.entity.GroupBean;
 import text.bwei.com.xiangqing.myview.AddDeleteView;
 
-//import com.bwei.gepeng.R;
-//import com.bwei.gepeng.entity.ChildBean;
-//import com.bwei.gepeng.entity.GroupBean;
-//import com.bwei.gepeng.myview.AddDeleteView;
-//import com.bwei.gepeng.view.Main2Activity;
-
-/**
- * 作者：戈鹏
- * on 2017/12/11 09:21
- */
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     // private static final String TAG = "ExpandableAdapter二级列表适配器";
 
     private Context context;
-    private List<GroupBean> groupBeen=new ArrayList<>();
-    private List<List<ChildBean>> childBeen=new ArrayList<>();
+    private List<GroupBean> groupBeen = new ArrayList<>();
+    private List<List<ChildBean>> childBeen = new ArrayList<>();
 
     private Main2Activity main;
 
@@ -87,10 +77,10 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int i, boolean b, View view, ViewGroup viewGroup) {
         //加载视图
-        view=View.inflate(context, R.layout.ex_group_item ,null);
+        view = View.inflate(context, R.layout.ex_group_item, null);
 
-        final CheckBox groupCb= view.findViewById(R.id.group_checkbox);
-        TextView shopName= view.findViewById(R.id.shop_name);
+        final CheckBox groupCb = view.findViewById(R.id.group_checkbox);
+        TextView shopName = view.findViewById(R.id.shop_name);
 
 
         shopName.setText(groupBeen.get(i).getSellerName());
@@ -103,23 +93,23 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                 boolean gchecked = groupCb.isChecked();
                 groupBeen.get(i).setGropuCb(gchecked);
                 //Main2Activity main= (Main2Activity) context;
-                for(GroupBean i: groupBeen){
+                for (GroupBean i : groupBeen) {
                     boolean gropuCb = i.isGropuCb();
-                    if(!gropuCb){
+                    if (!gropuCb) {
                         main.allCheckbox.setChecked(false);
                         break;
-                    }else{
+                    } else {
                         main.allCheckbox.setChecked(true);
                     }
                 }
                 int size = childBeen.get(i).size();
-                if(gchecked){
-                    for(int r=0;r<size;r++){
+                if (gchecked) {
+                    for (int r = 0; r < size; r++) {
                         //Toast.makeText(context,"group按钮"+ gchecked+""+size, Toast.LENGTH_SHORT).show();
                         childBeen.get(i).get(r).setChildCb(true);
                     }
-                }else{
-                    for(int r=0;r<size;r++){
+                } else {
+                    for (int r = 0; r < size; r++) {
                         //Toast.makeText(context,"group按钮"+ gchecked+""+size, Toast.LENGTH_SHORT).show();
                         childBeen.get(i).get(r).setChildCb(false);
                     }
@@ -135,30 +125,30 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int i, final int i1, boolean b, View v, ViewGroup viewGroup) {
         //加载视图
-        v=View.inflate(context, R.layout.ex_child_item ,null);
+        v = View.inflate(context, R.layout.ex_child_item, null);
 
         final CheckBox childCb = v.findViewById(R.id.child_checkbox);
-        TextView shopTitle= v.findViewById(R.id.shop_title);
-        TextView shopPrice= v.findViewById(R.id.shop_price);
+        TextView shopTitle = v.findViewById(R.id.shop_title);
+        TextView shopPrice = v.findViewById(R.id.shop_price);
         //ImageView shopImg=v.findViewById(R.id.shop_img);
         //draweeView.setImageURI(uri);
         SimpleDraweeView shopImg = v.findViewById(R.id.shop_img);
         final AddDeleteView adv = v.findViewById(R.id.adv);
-        Button shop_delete=v.findViewById(R.id.shop_delete);
+        Button shop_delete = v.findViewById(R.id.shop_delete);
 
         childCb.setChecked(childBeen.get(i).get(i1).isChildCb());
         String images = childBeen.get(i).get(i1).getImages();
         //Glide.with(context).load(images).into(shopImg);
         shopImg.setImageURI(images);
         shopTitle.setText(childBeen.get(i).get(i1).getTitle());
-        shopPrice.setText(childBeen.get(i).get(i1).getPrice()+"");
+        shopPrice.setText(childBeen.get(i).get(i1).getPrice() + "");
         adv.setNumber(childBeen.get(i).get(i1).getNum());
 
         //final Main2Activity main= (Main2Activity) context;
         //控制删除按钮的显隐
-        if(childBeen.get(i).get(i1).isBtn()){
+        if (childBeen.get(i).get(i1).isBtn()) {
             shop_delete.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             shop_delete.setVisibility(View.INVISIBLE);
         }
         //删除按钮监听
@@ -166,15 +156,15 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 int size = childBeen.get(i).size();
-                if(size==1){
+                if (size == 1) {
                     childBeen.remove(i);
                     groupBeen.remove(i);
-                }else{
+                } else {
                     childBeen.get(i).remove(i1);
                 }
                 //点击删除后隐藏所有删除按钮
-                for (List<ChildBean> i1:childBeen){
-                    for(int r=0;r<i1.size();r++) {
+                for (List<ChildBean> i1 : childBeen) {
+                    for (int r = 0; r < i1.size(); r++) {
                         i1.get(r).setBtn(false);
                     }
                 }
@@ -199,8 +189,8 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             @Override
             public void onDelClick(View v) {
                 int number = adv.getNumber();
-                if(number==1){
-                    Toast.makeText(context,"用户最小数量为1",Toast.LENGTH_SHORT).show();
+                if (number == 1) {
+                    Toast.makeText(context, "用户最小数量为1", Toast.LENGTH_SHORT).show();
                 }
                 number--;
                 adv.setNumber(number);
@@ -213,36 +203,36 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         childCb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean flag=false;
+                boolean flag = false;
                 boolean cchecked = childCb.isChecked();
                 childBeen.get(i).get(i1).setChildCb(cchecked);
                 //Toast.makeText(context,"child按钮"+ cchecked+""+i1, Toast.LENGTH_SHORT).show();
-               // Main2Activity main= (Main2Activity) context;
-                for (List<ChildBean> i1:childBeen){
-                    for(int r=0;r<i1.size();r++) {
+                // Main2Activity main= (Main2Activity) context;
+                for (List<ChildBean> i1 : childBeen) {
+                    for (int r = 0; r < i1.size(); r++) {
                         boolean childCb1 = i1.get(r).isChildCb();
-                        if(!childCb1){
+                        if (!childCb1) {
                             main.allCheckbox.setChecked(false);
                             groupBeen.get(i).setGropuCb(false);
-                            flag=true;
+                            flag = true;
                             break;
-                        }else{
+                        } else {
                             main.allCheckbox.setChecked(true);
                             groupBeen.get(i).setGropuCb(true);
                         }
                     }
-                    if(flag){
+                    if (flag) {
                         break;
                     }
                 }
 
                 int size = childBeen.get(i).size();
-                for(int x=0;x<size;x++) {
+                for (int x = 0; x < size; x++) {
                     boolean childCb1 = childBeen.get(i).get(x).isChildCb();
-                    if(!childCb1){
+                    if (!childCb1) {
                         groupBeen.get(i).setGropuCb(false);
                         break;
-                    }else{
+                    } else {
                         groupBeen.get(i).setGropuCb(true);
                     }
                 }

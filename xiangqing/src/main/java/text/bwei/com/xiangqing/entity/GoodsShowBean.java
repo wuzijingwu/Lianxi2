@@ -1,9 +1,6 @@
 package text.bwei.com.xiangqing.entity;
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 09:07
- */
+
 
 public class GoodsShowBean {
 

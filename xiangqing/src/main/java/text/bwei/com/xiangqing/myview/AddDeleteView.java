@@ -12,10 +12,7 @@ import android.widget.TextView;
 import text.bwei.com.xiangqing.R;
 
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 10:12
- */
+
 
 public class AddDeleteView extends LinearLayout {
     private OnAddDelClickListener listener;

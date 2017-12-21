@@ -18,11 +18,7 @@ public class Model implements IModel{
         this.presenter = presenter;
     }
 
-    /*@Override
-    public void getData(Map<String, String> map) {
-        Flowable<MessageBean<List<Newslist>>> flowable = RetrofitUtils.getInstance().getApiService().getNews(map);
-        presenter.get(flowable);
-    }*/
+
 
     @Override
     public void getData(Map<String, String> map, String tag) {

@@ -2,15 +2,7 @@ package text.bwei.com.xiangqing.entity;
 
 import java.util.List;
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 09:24
- *
- *反而给人提供他
- *
- *
- * 分别交收费办法三不管发生
- */
+
 
 public class CartBean {
     private String sellerName;

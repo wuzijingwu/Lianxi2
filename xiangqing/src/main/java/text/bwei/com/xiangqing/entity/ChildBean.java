@@ -1,9 +1,6 @@
 package text.bwei.com.xiangqing.entity;
 
-/**
- * 作者：戈鹏
- * on 2017/12/19 10:09
- */
+
 
 public class ChildBean {
     private String title;
